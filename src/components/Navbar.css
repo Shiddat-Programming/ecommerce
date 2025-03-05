@@ -1,0 +1,19 @@
+
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1c47d4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 100;
+    color: white;
+}
+
+ .links{
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+   
+}
