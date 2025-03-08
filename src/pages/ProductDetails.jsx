@@ -3,10 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchProductById } from '../services/api';
+import { useCart } from '../context/CartProvider';
+// import { useCart } from '../context/CartContext.js'; 
+
 
 const ProductDetails = () => {
   const { productId } = useParams(); // Get productId from URL
   const [product, setProduct] = useState(null);
+  const { addToCart } = useCart(); // Add this line
 
   useEffect(() => {
     const getProduct = async () => {
@@ -24,7 +28,7 @@ const ProductDetails = () => {
       <h2>{product.title}</h2>
       <p>${product.price}</p>
       <p>{product.description}</p>
-      <button>Add to Cart</button> {/* We'll implement this later */}
+      <button onClick={() => addToCart(product)}>Add to Cart</button>
     </div>
   );
 };
