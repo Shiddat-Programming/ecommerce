@@ -1,34 +1,34 @@
-
+// src/components/Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartProvider';
- 
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-  const { cart } = useCart(); // Add this line
+  const { cart } = useCart();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // Call logout function
+    navigate('/'); // Redirect to home page
+  };
+
   return (
     <nav>
-
-      <Link className='links' to="/">Home</Link>
-
-
-
-      <Link to="/cart" className="cart-link"> 
+      <Link to="/">Home</Link>
+      <Link to="/cart" className="cart-link">
         🛒 Cart
-        {cart.length > 0 && (
-          <span className="cart-count">{cart.length}</span>
-        )}
+        {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
       </Link>
-
-
-
-
-
-
-
-      <Link className='links' to="/login">Login</Link>
-      <Link className='links' to="/register">Register</Link>
+      {user ? ( // Show logout button if user is logged in
+        <button onClick={handleLogout}>Logout</button>
+      ) : ( // Show login and register buttons if user is not logged in
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </>
+      )}
     </nav>
   );
 };
