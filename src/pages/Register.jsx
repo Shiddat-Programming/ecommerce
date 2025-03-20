@@ -1,6 +1,7 @@
 // src/pages/Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "./register.css"
 
 const Register = () => {
   const [name, setName] = useState('');

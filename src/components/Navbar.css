@@ -1,19 +1,81 @@
+/* src/components/Navbar.css */
 
-
-nav{
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #1c47d4;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    z-index: 100;
-    color: white;
-}
-
- .links{
-    color: white;
+    background-color: #20232a;
+    padding: 12px 24px;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+    flex-wrap: wrap;
+  }
+  
+  
+  nav a,
+  nav button {
+    margin-left: 15px;
     text-decoration: none;
-    font-size: 1.2rem;
-   
-}
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  nav a:hover,
+  nav button:hover {
+    color: #61dafb;
+  }
+  
+  .links_color {
+    color: #ffffff;
+  }
+  
+  .cart-link {
+    position: relative;
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #ff4757;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+  }
+  
+  /* Button styling for Logout */
+  nav button {
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: #e74c3c;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Responsive: Stack items on small screens */
+  @media screen and (max-width: 600px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    nav a,
+    nav button {
+      margin: 8px 0;
+    }
+  }
+  

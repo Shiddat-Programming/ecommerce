@@ -1,5 +1,6 @@
 import React from 'react'
 import { useCart } from '../context/CartProvider';
+import './cart.css'
 
 const Cart = () => {
 
@@ -7,7 +8,7 @@ const Cart = () => {
   return (
    
 
-    <div>
+    <div className='emptyCart'>
 
       <h1> Your Cart </h1>
 
@@ -21,7 +22,7 @@ const Cart = () => {
    )  : (
 
     <div>
-    <h1>Cart</h1>
+  
     <div className="product-grid">
         {cart.map((product) => (
         <div key={product.id} className="product-card">

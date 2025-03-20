@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom';
 import { fetchProductById } from '../services/api';
 import { useCart } from '../context/CartProvider';
 // import { useCart } from '../context/CartContext.js'; 
+import './product_details.css'
+import "./Home.css"
+
 
 
 const ProductDetails = () => {
@@ -24,11 +27,11 @@ const ProductDetails = () => {
 
   return (
     <div className="product-details">
-      <img src={product.image} alt={product.title} />
+      <img width="200px" src={product.image} alt={product.title} />
       <h2>{product.title}</h2>
-      <p>${product.price}</p>
+      <p className='price'>${product.price}</p>
       <p>{product.description}</p>
-      <button onClick={() => addToCart(product)}>Add to Cart</button>
+      <button  className='add_to_cart' onClick={() => addToCart(product)}>Add to Cart</button>
     </div>
   );
 };
