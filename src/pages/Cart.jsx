@@ -3,15 +3,20 @@ import { useCart } from '../context/CartProvider';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const { cart, removeFromCart, getCartTotal } = useCart();
+  const { cart, removeFromCart, getCartTotal, clearCart } = useCart();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    // Cart data को order page पर ले जाने के लिए
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+
     navigate('/order', { 
       state: { 
-        cartItems: cart,
-        total: getCartTotal()
+        cartItems: [...cart], // Create a new array to avoid reference issues
+        total: getCartTotal(),
+        itemCount: cart.reduce((total, item) => total + item.quantity, 0)
       }
     });
   };
@@ -28,19 +33,29 @@ const Cart = () => {
         <>
           <div className="cart-items">
             {cart.map((item) => (
-              <div key={item.id} className="cart-item">
+              <div key={`${item.id}-${item.size || ''}`} className="cart-item">
                 <img src={item.image} alt={item.title} />
-                <div>
+                <div className="item-details">
                   <h3>{item.title}</h3>
-                  <p>${item.price} x {item.quantity}</p>
+                  <p>₹{item.price.toFixed(2)} x {item.quantity}</p>
+                  {item.size && <p>Size: {item.size}</p>}
                 </div>
-                <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                <button 
+                  onClick={() => removeFromCart(item.id)}
+                  className="remove-btn"
+                >
+                  Remove
+                </button>
               </div>
             ))}
           </div>
           <div className="cart-summary">
-            <h2>Total: ${getCartTotal().toFixed(2)}</h2>
-            <button onClick={handleCheckout} className="checkout-btn">
+            <h2>Total: ₹{getCartTotal().toFixed(2)}</h2>
+            <button 
+              onClick={handleCheckout} 
+              className="checkout-btn"
+              disabled={cart.length === 0}
+            >
               Proceed to Checkout
             </button>
           </div>

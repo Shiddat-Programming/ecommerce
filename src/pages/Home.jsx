@@ -44,7 +44,8 @@ const Home = () => {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Total pages
+
+  // Total pages 4 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   return (
@@ -112,15 +113,19 @@ const Home = () => {
         >
           Previous
         </button>
+
+                                 
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
             onClick={() => paginate(index + 1)}
             className={currentPage === index + 1 ? 'active' : ''}
           >
-            {index + 1}
+            { index + 1}   
           </button>
         ))}
+
+
         <button
           onClick={() => paginate(currentPage + 1)}
           disabled={currentPage === totalPages}
